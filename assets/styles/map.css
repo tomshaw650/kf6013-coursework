@@ -1,0 +1,26 @@
+#map {
+  height: 100%;
+}
+
+.map-container {
+  margin-top: 1em;
+  height: 50vh;
+}
+
+#directions-panel {
+  float: right;
+  width: 100%;
+}
+
+#distance-panel {
+  padding-top: 1em;
+  float: left;
+}
+
+#clear-directions {
+  border: none;
+  padding: 1em;
+  margin-top: 0.5em;
+  float: right;
+  margin-bottom: 0.5em;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Living Planet | Homepage</title>
+    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico" />
+
+    <!-- META DATA -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- LOAD IN STYLESHEETS -->
+    <link rel="stylesheet" href="./assets/styles/main.css" />
+    <link rel="stylesheet" href="./assets/styles/navbar.css" />
+    <link rel="stylesheet" href="./assets/styles/map.css" />
+  </head>
+  <body>
+    <header>
+      <a id="header-link" href="/">
+        <h1>Living Planet</h1>
+      </a>
+      <nav>
+        <ul>
+          Item 1
+        </ul>
+        <ul>
+          Item 2
+        </ul>
+        <ul>
+          Item 3
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="map-container">
+        <h2>View tweets on the map</h2>
+        <div id="map"></div>
+      </section>
+    </main>
+    <footer>
+      <div id="footer-content">
+        <p>Created by: Tom Shaw W19025481</p>
+        <p>Copyright &copy; 2023</p>
+      </div>
+    </footer>
+    <!-- lOAD IN REQUIRED SCRIPTS -->
+    <!-- 
+      Title: jQuery
+      Author: The jQuery Team
+      Code version: 3.6.3
+      Date: (December 20, 2022)
+      Availability: https://jquery.com/download/
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="./assets/javascripts/initMap.js"></script>
+    <!--
+      Title: Google Maps API
+      Author: Google
+      Code version: 3.52
+      Date: (February 28, 2023)
+      Availability: https://developers.google.com/maps/
+    -->
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-LttAINsVamd6LyIzQbFYxn-9GmPfKZY&callback=initMap"
+    ></script>
+  </body>
+</html>
