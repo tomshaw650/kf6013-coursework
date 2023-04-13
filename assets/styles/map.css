@@ -4,7 +4,8 @@
 
 .map-container {
   margin-top: 1em;
-  height: 50vh;
+  height: 100vh;
+  margin-bottom: calc(20px + 2em);
 }
 
 #directions-panel {
