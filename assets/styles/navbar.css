@@ -14,7 +14,7 @@ header {
 }
 
 #header-link:hover {
-  color: lightgreen;
+  color: var(--primary);
 }
 
 h1 {
@@ -44,5 +44,5 @@ nav a {
 }
 
 nav a:hover {
-  color: lightgreen;
+  color: var(--primary);
 }

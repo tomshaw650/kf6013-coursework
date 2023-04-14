@@ -1,0 +1,86 @@
+/** All styles for the side panels **/
+/* Left side panel */
+#left-side-panel {
+  position: fixed;
+  top: 40%;
+  left: -200px;
+  width: 200px;
+  height: 22vh;
+  background-color: #f1f1f1;
+  transition: left 0.3s ease-in-out;
+  border: 1px solid var(--black);
+}
+
+#left-side-panel.open {
+  left: 0;
+}
+
+#left-toggle-panel {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 50px;
+  background-color: var(--primary);
+  border: 1px solid var(--black);
+  border-radius: 0 5px 5px 0;
+  outline: none;
+  cursor: pointer;
+  transition: left 0.3s ease-in-out;
+  font-weight: 800;
+}
+
+#left-toggle-panel:hover {
+  background-color: var(--secondary);
+}
+
+#left-toggle-panel.open {
+  left: 200px;
+}
+
+/* Right side panel */
+#right-side-panel {
+  position: fixed;
+  top: 0;
+  right: -200px;
+  width: 200px;
+  height: 100vh;
+  background-color: #f1f1f1;
+  transition: right 0.3s ease-in-out;
+  border: 1px solid var(--black);
+  overflow-y: scroll;
+}
+
+#right-side-panel.open {
+  right: 0;
+}
+
+#right-toggle-panel {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 50px;
+  background-color: var(--primary);
+  border: 1px solid var(--black);
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  cursor: pointer;
+  transition: right 0.3s ease-in-out;
+  font-weight: 800;
+}
+
+#right-toggle-panel:hover {
+  background-color: var(--secondary);
+}
+
+#right-toggle-panel.open {
+  right: 200px;
+}
+
+/* Both side panels */
+#side-panel-content {
+  padding: 20px;
+}

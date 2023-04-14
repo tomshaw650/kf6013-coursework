@@ -9,10 +9,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- LOAD SCRIPTS -->
+    <!-- 
+      Title: jQuery
+      Author: The jQuery Team
+      Code version: 3.6.3
+      Date: (December 20, 2022)
+      Availability: https://jquery.com/download/
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="./assets/javascripts/climateData.js"></script>
+    <script src="./assets/javascripts/initMap.js"></script>
+    <script src="./assets/javascripts/feed.js"></script>
+    <script src="./assets/javascripts/index.js"></script>
+
     <!-- LOAD IN STYLESHEETS -->
     <link rel="stylesheet" href="./assets/styles/main.css" />
     <link rel="stylesheet" href="./assets/styles/navbar.css" />
     <link rel="stylesheet" href="./assets/styles/map.css" />
+    <link rel="stylesheet" href="./assets/styles/side-panel.css" />
   </head>
   <body>
     <header>
@@ -25,7 +40,7 @@
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/feed">Feed</a>
+            <a href="/feed.html">Feed</a>
           </li>
           <li>
             <a href="/login">Login</a>
@@ -45,9 +60,39 @@
         tweets shown.
       </p>
       <section class="map-container">
-        <h3>View tweets on the map</h2>
+        <div id="flex-container">
+          <h3>View tweets on the map</h3>
+          <button id="reset-position">Reset Position</button>
+        </div>
         <div id="map"></div>
       </section>
+      <div id="left-side-panel">
+        <div id="side-panel-content">
+          <h4>Weather Info:</h4>
+          <div id="weather-data"></div>
+        </div>
+      </div>
+      <button
+        id="left-toggle-panel"
+        aria-controls="left-side-panel"
+        aria-label="Toggle the left side panel"
+      >
+        &gt;
+      </button>
+      <div id="right-side-panel">
+        <div id="side-panel-content">
+          <h4>Distance to Living Planet HQ: <span id="output"></span></h4>
+          <button id="clear-directions">Clear Directions</button>
+          <div id="directions-renderer"></div>
+        </div>
+      </div>
+      <button
+        id="right-toggle-panel"
+        aria-controls="right-side-panel"
+        aria-label="Toggle the right side panel"
+      >
+        &lt;
+      </button>
     </main>
     <footer>
       <div id="footer-content">
@@ -55,16 +100,7 @@
         <p>Copyright &copy; Living Planet 2023</p>
       </div>
     </footer>
-    <!-- LOAD IN REQUIRED SCRIPTS -->
-    <!-- 
-      Title: jQuery
-      Author: The jQuery Team
-      Code version: 3.6.3
-      Date: (December 20, 2022)
-      Availability: https://jquery.com/download/
-    -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="./assets/javascripts/initMap.js"></script>
+    <!-- LOAD IN MAP -->
     <!--
       Title: Google Maps API
       Author: Google
