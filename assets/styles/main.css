@@ -31,6 +31,11 @@ main {
   margin: 0 auto;
 }
 
+#about {
+  font-size: 1.5em;
+  margin-top: 1em;
+}
+
 #flex-container {
   display: flex;
   align-items: center;
