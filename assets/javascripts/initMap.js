@@ -24,12 +24,23 @@ function initMap() {
 
     const bounds = new google.maps.LatLngBounds();
 
-    // uses climateData from ./feed.js to create markers on the map
+    // uses climateData from ./climateData.js to create markers on the map
     for (let i = 0; i < data.length; i++) {
       const tweetData = data[i];
 
-      if (!tweetData.user.location) {
-        tweetData.user.location = "Unknown";
+      // https://developer.twitter.com/en/docs/twitter-api/v1/data-dictionary/object-model/geo
+      // see above for information on how to get the location of a tweet
+      // below we are creating `location` and setting this based on if coordinates/place/geo are available.
+      // we use the user.location as the final data to fall back on, and if this is not available we set it to "Unknown"
+      let location = tweetData.user.location;
+      if (tweetData.coordinates !== null) {
+        location = tweetData["coordinates"]["coordinates"];
+      } else if (tweetData.place !== null) {
+        location = tweetData.place.full_name;
+      } else if (tweetData.geo !== null) {
+        location = tweetData.geo.coordinates;
+      } else if (!location) {
+        location = "Unknown";
       }
 
       let tweetInfoWindow =
@@ -40,7 +51,7 @@ function initMap() {
         `<br>` +
         `<p>${tweetData.text}</p>` +
         `<br>` +
-        `<span>${tweetData.user.location}</span>` +
+        `<span>${location}</span>` +
         `</div>`;
 
       let infoWindow = new google.maps.InfoWindow({
@@ -50,7 +61,7 @@ function initMap() {
       });
 
       $.getJSON(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${tweetData.user.location}&key=AIzaSyB-LttAINsVamd6LyIzQbFYxn-9GmPfKZY`,
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyB-LttAINsVamd6LyIzQbFYxn-9GmPfKZY`,
         function (data) {
           if (data.status === "OK") {
             tweetData.lat = data.results[0].geometry.location.lat;

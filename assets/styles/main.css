@@ -45,7 +45,8 @@ main {
   margin-bottom: 1em;
 }
 
-#reset-position {
+#reset-position,
+#logout {
   background-color: var(--primary);
   border: 1px solid var(--black);
   border-radius: 5px;
@@ -55,7 +56,8 @@ main {
   cursor: pointer;
 }
 
-#reset-position:hover {
+#reset-position:hover,
+#logout:hover {
   background-color: var(--secondary);
 }
 
