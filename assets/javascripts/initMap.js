@@ -1,12 +1,30 @@
+/**
+ *
+ * This file contains the logic for Google Maps API and surrounding APIs
+ * Including Distance Matrix, Directions, and Geocoding.
+ * The map is initialised and the markers are created based on tweet locations
+ * The side panels on the index page are used to show the closest weather station to the user
+ * and the directions to the Living Planet HQ.
+ *
+ * @author Tom Shaw
+ *
+ */
+
 function initMap() {
   $(document).ready(function () {
+    // initialise the map variable and required data
     let map;
     let data = getClimateData();
 
+    // initialise the API services
     const matrixService = new google.maps.DistanceMatrixService();
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer();
+
+    // create the coordinates for the map to be centred on (Living Planet HQ)
     const myLatLng = { lat: 54.97828736453621, lng: -1.6182544814153705 };
+
+    // create the map options
     let mapOptions = {
       center: new google.maps.LatLng(myLatLng),
       zoom: 12,
@@ -18,10 +36,12 @@ function initMap() {
       panControl: true,
     };
 
+    // create the map anddirections renderer panel
     map = new google.maps.Map($("#map")[0], mapOptions);
     directionsRenderer.setMap(map);
     directionsRenderer.setPanel(document.getElementById("directions-renderer"));
 
+    // initialise the bounds for the maps
     const bounds = new google.maps.LatLngBounds();
 
     // uses climateData from ./climateData.js to create markers on the map
@@ -43,6 +63,7 @@ function initMap() {
         location = "Unknown";
       }
 
+      // create the custom info window for the marker
       let tweetInfoWindow =
         `<div>` +
         `<span>${tweetData.user.screen_name}</span>` +
@@ -54,15 +75,18 @@ function initMap() {
         `<span>${location}</span>` +
         `</div>`;
 
+      // create the info window
       let infoWindow = new google.maps.InfoWindow({
         content: tweetInfoWindow,
         ariaLabel: "Tweet Info",
         disableAutoPan: true,
       });
 
+      // jquery getJSON request to get the latitude and longitude of the location based on geocoding
       $.getJSON(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=AIzaSyB-LttAINsVamd6LyIzQbFYxn-9GmPfKZY`,
         function (data) {
+          // if the status is OK, set the lat and lng of the tweetData object
           if (data.status === "OK") {
             tweetData.lat = data.results[0].geometry.location.lat;
             tweetData.lng = data.results[0].geometry.location.lng;
@@ -90,6 +114,7 @@ function initMap() {
               icon: image,
             });
 
+            // Add an event listener for the markers for hovering
             marker.addListener("mouseover", function () {
               infoWindow.open(map, marker);
             });
@@ -113,6 +138,7 @@ function initMap() {
               let lat = event.latLng.lat();
               let lng = event.latLng.lng();
 
+              // Get the weather data from the GeoNames API
               $.getJSON(
                 "http://api.geonames.org/findNearByWeatherJSON?lat=" +
                   lat +
@@ -120,8 +146,10 @@ function initMap() {
                   lng +
                   "&username=tomshaw",
                 function (data) {
+                  // Get the weather data div
                   var weatherData = $("#weather-data");
 
+                  // Animate the weather data div
                   $("#weather-data").animate();
 
                   // Clear any existing weather data
@@ -145,14 +173,18 @@ function initMap() {
               );
             });
 
+            // Add an event listener for the markers to show the directions
             google.maps.event.addListener(marker, "click", function (event) {
               const origin = event.latLng;
               const destination = "NE1 8ST, UK";
+
+              // alert if no origin is selected
               if (origin == null) {
                 alert("Please select a marker first");
                 return;
               }
 
+              // set up the matrix request
               const matrixRequest = {
                 origins: [origin],
                 destinations: [destination],
@@ -162,6 +194,7 @@ function initMap() {
                 avoidTolls: false,
               };
 
+              // set up the directions request
               const directionsRequest = {
                 origin: origin,
                 destination: destination,
@@ -171,12 +204,14 @@ function initMap() {
                 avoidTolls: false,
               };
 
+              // use the matrix service to get the distance between the origin and destination
               matrixService
                 .getDistanceMatrix(matrixRequest)
                 .then((response) => {
                   $("#output").text(response.rows[0].elements[0].distance.text);
                 });
 
+              // use the directions service to get the directions between the origin and destination
               directionsService.route(
                 directionsRequest,
                 function (response, status) {
@@ -200,10 +235,12 @@ function initMap() {
     // Fit the map to the LatLngBounds object
     map.fitBounds(bounds);
 
+    // button to reset the directions using setDirections() method
     $("#clear-directions").click(function () {
       directionsRenderer.setDirections({ routes: [] });
     });
 
+    // button to reset the map using setCenter() and setZoom() methods
     $("#reset-position").click(function () {
       // Reset the center and zoom level of the map
       map.setCenter(myLatLng);

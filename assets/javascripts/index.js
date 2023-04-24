@@ -5,6 +5,7 @@
  * @author Tom Shaw
  *
  */
+
 $(document).ready(function () {
   // Toggle the left side panel
   $("#left-toggle-panel").click(function () {

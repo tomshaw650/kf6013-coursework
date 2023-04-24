@@ -26,6 +26,7 @@ $(document).ready(function () {
     $.each(climateData, function (index, value) {
       // create required elements for each tweet
       const container = $("<div>");
+      const image = $("<img>");
       const username = $("<span>");
       const location = $("<span>");
 
@@ -35,6 +36,11 @@ $(document).ready(function () {
       container.css("border", "1px solid black");
       container.css("padding", "0.5em");
       container.css("margin-bottom", "0.5em");
+
+      // add styling to the image
+      image.css("width", "50px");
+      image.css("height", "50px");
+      image.css("border-radius", "50%");
 
       // add styling to the username span
       username.css("font-weight", "bold");
@@ -46,6 +52,7 @@ $(document).ready(function () {
 
       // set the username span text to the username
       username.text(value.user.screen_name);
+      image.attr("src", value.user.profile_image_url);
 
       // set the location span text to the user's location
       location.text(
@@ -56,6 +63,9 @@ $(document).ready(function () {
       if ($("#tweet-container").length) {
         // set the div text to the tweet's body
         container.append(value.text);
+
+        // add the image to the container div
+        container.prepend(image);
 
         // add the username span to the start of the div
         container.prepend(username);

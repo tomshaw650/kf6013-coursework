@@ -1,3 +1,4 @@
+/***** HEADER STYLING *****/
 header {
   display: flex;
   justify-content: space-between;
@@ -8,6 +9,7 @@ header {
   margin-bottom: 1em;
 }
 
+/* Header links */
 #header-link {
   text-decoration: none;
   color: #fff;
@@ -17,10 +19,12 @@ header {
   color: var(--primary);
 }
 
+/* main title */
 h1 {
   font-size: 3em;
 }
 
+/* navigation links menu */
 nav ul {
   display: flex;
   justify-content: space-between;

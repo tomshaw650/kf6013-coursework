@@ -1,23 +1,16 @@
+/***** MAP STYLES *****/
 #map {
   height: 100%;
 }
 
+/* ensure the map doesnt overlap the footer with a calc */
 .map-container {
   margin-top: 1em;
   height: 62vh;
   margin-bottom: calc(30px + 2em);
 }
 
-#directions-panel {
-  float: right;
-  width: 100%;
-}
-
-#distance-panel {
-  padding-top: 1em;
-  float: left;
-}
-
+/* clear directions button */
 #clear-directions {
   background-color: var(--secondary);
   padding: 0.5em;

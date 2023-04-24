@@ -1,3 +1,12 @@
+/**
+ *
+ * This file contains the code to retrieve the climate data from the JSON file
+ * Filters it down to the appropriate data, and allows it to be used throughout the site.
+ *
+ * @author Tom Shaw
+ *
+ */
+
 $(document).ready(() => {
   setClimateData();
 });
@@ -24,6 +33,7 @@ const setClimateData = () => {
   });
 };
 
+// getter method. if the climateData is not undefined, return it
 const getClimateData = () => {
   if (climateData !== undefined) return climateData;
 };

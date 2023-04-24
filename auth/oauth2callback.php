@@ -1,4 +1,17 @@
 <?php
+/**
+ * 
+ * Create the callback URL for Google OAuth, sending the user to a Google login page
+ * Create a session and set the config and redirect uri
+ * Also add the scope for the user's email address
+ * If they are not authenticated, set the location header and auth url.
+ * If they are, authenticate the user and set the access token in the session.
+ * 
+ * This code is adapted from the workshop.
+ * 
+ * @author Tom Shaw, Kay Rogage 
+ * 
+ */
 
 require_once __DIR__ . '/vendor/autoload.php';
 

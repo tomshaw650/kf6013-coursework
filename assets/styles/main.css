@@ -1,3 +1,4 @@
+/* CSS Variables */
 :root {
   /* Colours */
   --primary: #34a853;
@@ -6,6 +7,7 @@
   --white: #fff;
 }
 
+/* Global Styles */
 *,
 *:before,
 *:after {
@@ -24,6 +26,7 @@ body {
   overflow-x: hidden;
 }
 
+/* Main Styles */
 main {
   display: flex;
   flex-direction: column;
@@ -31,11 +34,13 @@ main {
   margin: 0 auto;
 }
 
+/* standard class to separate paragraphs */
 #about {
   font-size: 1.5em;
   margin-top: 1em;
 }
 
+/* Agnostic flex container */
 #flex-container {
   display: flex;
   align-items: center;
@@ -45,6 +50,7 @@ main {
   margin-bottom: 1em;
 }
 
+/* Buttons */
 #reset-position,
 #logout {
   background-color: var(--primary);
@@ -61,6 +67,7 @@ main {
   background-color: var(--secondary);
 }
 
+/* Footer styling */
 footer {
   border-top: 1px solid #000;
   margin-top: auto;
